@@ -2,9 +2,9 @@
   "name": "api-server-example",
   "version": "1.0.0",
   "description": "An example in NodeJS",
-  "main": "myServer.js",
+  "main": "server.js",
   "scripts": {
-    "test": "node myServer.js",
+    "test": "node server.js",
     "start": "node server.js"
   },
   "keywords": [
