@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <title>Dieta size</title>
+    <!-- Required Stylesheets -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
+    />
+
+    <!-- Required scripts -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+  </head>
+  <body>
+    <!-- Our application root element -->
+    <div id="app">
+      <b-container>
+      <div>
+  	<b-navbar toggleable="lg" type="dark" variant="info">
+    	<b-navbar-brand href="#home">Dieta Size</b-navbar-brand>
+
+    	<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+   	 <b-collapse id="nav-collapse" is-nav>
+      	 <b-navbar-nav>
+        	<b-nav-item href="#NuevoUser">Nuevo usuario</b-nav-item>
+        	<b-nav-item href=http://localhost:8000/user>Lista usuarios</b-nav-item>
+        	<b-nav-item href="#NuevaDieta">Nueva dieta</b-nav-item>
+        	<b-nav-item href=http://localhost:8000/dieta>Lista dietas</b-nav-item>
+      	 </b-navbar-nav>
+      	  <b-navbar-nav class="ml-auto">
+            <b-nav-form>
+             <b-form-input size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
+             <b-button size="sm" class="my-2 my-sm-0" type="submit">Buscar</b-button>
+           </b-nav-form>
+
+
+	 </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+</div>
+	<div id="home">
+	 <b-jumbotron header="Dieta Size" lead="La mejor pagina de dietas">
+  	<b-img src="https://controldedietas.elnortedecastilla.es/sites/controldedietas.elnortedecastilla.es/files/images/control-de-dietas-logo.png" fluid alt="Responsive image"></b-img>
+        </b-jumbotron>
+	</div>
+	<div id="NuevoUser">
+	<b-form>
+
+        <b-form-group
+          horizontal
+          :label-cols="2"
+          description="Introduce tu nombreID"
+          label="NombreID"
+        >
+          <b-form-input v-model.trim="nameID"></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          horizontal
+          :label-cols="2"
+          description="Introduce tu nombre"
+          label="Nombre"
+        >
+          <b-form-input v-model.trim="name"></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          horizontal
+          :label-cols="2"
+          description="Introduce tu contraseña"
+          label="Contraseña"
+        >
+          <b-form-input type="password" v-model="password"></b-form-input>
+        </b-form-group>
+
+	 <b-form-group
+          horizontal
+          :label-cols="2"
+          description="Seleccione tu tipo de dieta"
+          label="Dieta"
+        >
+          <b-form-select v-model="selected" :options="options"></b-form-select>
+        </b-form-group>
+
+        <b-button type="submit" variant="primary" @click="añadirUser">Enviar</b-button>
+        <b-button type="reset" variant="danger">Reset</b-button>
+    </b-form>
+       
+	</div>
+	<br>
+	<br>
+	<div id="NuevaDieta">
+	<b-form>
+
+        <b-form-group
+          horizontal
+          :label-cols="2"
+          description="Introduce tu nombreID"
+          label="NombreID"
+        >
+          <b-form-input v-model.trim="nameID"></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          horizontal
+          :label-cols="2"
+          description="Introduce nombre de la dieta"
+          label="Nombre"
+        >
+          <b-form-input v-model.trim="name"></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          horizontal
+          :label-cols="2"
+          description="Introduce los ingredientes"
+          label="Ingredientes"
+        >
+          <b-form-input v-model="ingredientes"></b-form-input>
+        </b-form-group>
+
+	 <b-form-group
+          horizontal
+          :label-cols="2"
+          description="Seleccione tu tipo de dieta"
+          label="Dieta"
+        >
+          <b-form-select v-model="selected" :options="options"></b-form-select>
+        </b-form-group>
+
+        <b-button type="submit" variant="primary" @click="añadirDieta">Enviar</b-button>
+        <b-button type="reset" variant="danger">Reset</b-button>
+    </b-form>
+       
+	</div>
+	<br>
+          <b-tab title="Search">
+
+          	<label for="DietaName" class="s-label">Pon el nombre de la dieta</label>
+                <b-form-input id="DietaName" class="mt-2 s-round-input" v-model="DietaName"></b-form-input>
+                <b-button type="reset" pill class="s-button mt-4" @click="getDieta">Get data</b-button>
+		<div v-for="dieta in dietas">
+                          <b-card-text>
+                            <span style="font-weight:600;">Nombre: </span> {{dieta.name}}
+                            <span style="font-weight:600;">Ingredientes: </span> {{dieta.ingredientes}}
+                          </b-card-text>
+                      </div>
+                    </b-tab>
+	<br>
+        
+
+      </b-container>
+    </div>
+
+    <!-- Start running your app -->
+    <script>
+      window.app  = new Vue({
+        el: '#app',
+        data: {
+	  id:1,
+          name: '',
+	  nameID: '',
+	  password: '',
+	  selected: null,
+          options: [
+	  { value: null, text: 'Seleccione una opción' },
+          { value: 'Dietas vegetarianas' , text: 'Dietas vegetarianas' },
+          { value: 'Dieta mediterránea' , text: 'Dieta mediterránea' },
+          { value: 'Dietas para adelgazar' , text: 'Dietas para adelgazar' },
+          { value: 'Dietas veganas' , text: 'Dietas veganas' },
+          { value: 'Dietas deportivas' , text: 'Dietas deportivas'}
+        ],
+	  dieta: [],
+          dietas: [],
+          dietaID: 1,
+	  dietaName: '',
+ 	  creatorID: '',
+	  ingredientes: '',
+        },
+        created(){
+        	var self = this
+        	var ES = new EventSource('/news')
+
+        	console.log('Creando listener de eventos de servidor...')
+
+           	ES.addEventListener('updates', function(event){
+              	   var data = JSON.parse(JSON.parse(event.data)) //bytes to string -> string to json
+              	   console.log(data)
+              	   self.users.push(data)
+                }, false)
+
+        },
+	methods: {
+	     añadirUser(formData){
+        	console.log('Añadiendo usuario');
+        	let self = this
+        	let users = {NombreID:this.nameID,Nombre:this.name,Contraseña:this.password,Tipo_Dieta:this.selected}
+        	let url = '/user'
+        	fetch(url, {method: 'POST',
+                      body: JSON.stringify(user),
+                      headers:{
+                        'Content-Type': 'application/json'
+                      }
+                    })
+                      .then(function(r){
+                        return r.json()
+                      })
+                      .then(function(j){
+                        console.log('Se ha añadido un usuario correctamente!:: ',j.result)
+                      });        
+        },
+
+	añadirDieta(formData){
+        	console.log('Añadiendo dieta');
+        	let self = this
+        	let users = {dietaID:1,CreatorID:this.creatorID,dietaName:this.dietaName,Ingredientes:this.ingredientes,Tipo_Dieta:this.selected}
+        	let url = '/dieta'
+        	fetch(url, {method: 'POST',
+                      body: JSON.stringify(dieta),
+                      headers:{
+                        'Content-Type': 'application/json'
+                      }
+                    })
+                      .then(function(r){
+                        return r.json()
+                      })
+                      .then(function(j){
+                        console.log('Se ha añadido una dieta correctamente!:: ',j.result)
+                      });        
+        },
+
+	getDieta(){
+          let url= '/dieta/' + this.dietaName
+          console.log(url)
+          console.log("get")
+          fetch(url)  
+          .then(function(r){
+              return r.json()
+          }).then(function(j){
+              console.log(j.result)
+              self.dietas=j.result;
+          });
+        },
+
+	},
+        computed: {
+          showAlert() {
+            return this.name.length>4 ? true : false
+          }
+        },
+        mounted(){
+        	var self = this
+                //Inyectamos usuarios actuales en la componente Vue
+        	fetch('/user').then(function(r){return r.json()})
+        	              .then(function(j){self.users.push(...j.result)})
+        }
+      })
+    </script>
+  </body>
+</html>
