@@ -20,7 +20,7 @@ exports.createUser = data => {
 	else
 		Users[data.id] = data
 		console.log(data)
-		await db.insertUser(data)
+		//await db.insertUser(data)
 		console.log('Info model::', Users[data.id])
 	
 	return 'OK'

@@ -16,23 +16,23 @@ app.get('/news', control.eventStream) //Stream of Server-side events
 
 app.get('/user/', control.getUsers)
 
-app.post('/user/', control.createUser)
+//app.post('/user/', control.createUser)
 
-app.get('/user/:id', control.getUserData ) //Done
+//app.get('/user/:id', control.getUserData ) //Done
 
-app.delete('/user/delete/:id', control.removeUser)
+//app.delete('/user/delete/:id', control.removeUser)
 
-app.get('/dieta/:id', control.getDietaData ) //Done
+//app.get('/dieta/:id', control.getDietaData ) //Done
 
 app.get('/dieta/', control.getDieta)
 
-app.post('/user', control.updateUser ) //Done
+//app.post('/user', control.updateUser ) //Done
 //app.post('/user', control.updateDieta ) //Done
 app.post('/dieta', control.createDieta )
 
 
-app.get('/dieta/:name', control.getDietaByName)
-app.get('/dieta/:id', control.getDieta)
+//app.get('/dieta/:name', control.getDietaByName)
+//app.get('/dieta/:id', control.getDieta)
 //etc ...
 
 const PORT = 8080

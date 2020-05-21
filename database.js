@@ -1,6 +1,6 @@
 const sc = require('./schemas')
 const mng = require('mongoose') 
-const atlas_connect = mongodb+srv://octavio:3953oceA@cluster0-xsxis.mongodb.net/test?retryWrites=true&w=majority
+const atlas_connect = "mongodb+srv://octavio:3953oceA@cluster0-xsxis.mongodb.net/test?retryWrites=true&w=majority"
 
 mng.connect(atlas_connect)
 
