@@ -12,7 +12,7 @@ app.use(control.middleware) //Done
 
 app.use('/web', express.static('public'))
 
-app.get('/spam', control.eventStream) //Stream of Server-side events
+app.get('/news', control.eventStream) //Stream of Server-side events
 
 app.get('/user/', control.getUsers)
 
@@ -35,7 +35,7 @@ app.get('/dieta/:name', control.getDietaByName)
 app.get('/dieta/:id', control.getDieta)
 //etc ...
 
-const PORT = 8000
+const PORT = 8080
 app.listen(PORT, _ => console.log(`Servidor web escuchando en puerto ${PORT}`))
 
 
