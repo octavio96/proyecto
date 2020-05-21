@@ -2,9 +2,9 @@
   "name": "api-server-example",
   "version": "1.0.0",
   "description": "An example in NodeJS",
-  "main": "server.js",
+  "main": "myServer.js",
   "scripts": {
-    "test": "node server.js",
+    "test": "node myServer.js",
     "start": "node server.js"
   },
   "keywords": [
@@ -20,9 +20,7 @@
     "express-sse": "^0.5.0",
     "glob": "^7.1.1",
     "lodash": "^4.17.11",
-    "mongoose": "^5.9.15",
-    "package-lock.json": "^1.0.0",
-    "package.json": "^2.0.1",
+    "mongoose": "^5.9.7",
     "twitter": "^1.7.0"
   }
 }
